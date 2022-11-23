@@ -1,0 +1,164 @@
+
+#include<stdio.h>
+
+struct Book_Info
+{
+    char title[30];
+    int bookID;
+    int noOfCopies;
+    char author[30];
+};
+ struct Book_Info book[10];
+ int totalRecord;
+ 
+ void input()
+   {
+      for(int index=0;index<totalRecord;index++)
+         {
+             printf("\nEnter title of the book %d",index);
+             gets(book[index].title);
+
+             printf("\nEnter Book ID %d",index);
+             scanf("%d",&book[index].bookID);
+
+             printf("\nEnter total no of copies %d",index);
+             scanf("%d",&book[index].noOfCopies);
+
+             printf("\nEnter author of the book %d",index);
+             getchar();
+             gets(book[index].author);
+         }
+    }
+ void displayAll()
+          {
+               printf("\nThe library has the following books: \n \n")
+       
+               for(int index=0;index<totalRecord;index++)
+                  {
+                      printf("\nBook %d \n \n",index);
+                      printf("Title:");
+                      puts(book[index].title);
+                      printf("ID: %d \n Remaining copies:%d \n",book[index].bookID,book[index].noOfCopies);
+                      printf ("Authors");
+                      puts(book[index].author);
+                  }
+           
+            }
+
+     void displayOne()
+    
+   {
+        int id;
+        printf("\nEnter the ID of the book to issue:");
+        scanf("%d",&id);
+    
+        for(int index=0;index<totalRecords;index++)
+         {
+               if(book[index].bookID==id)
+                {
+                     printf("Title:");
+                     puts(book[index].title);
+                     printf("ID: %d \n Remaining copies:%d\n",book[index].bookID,book[index].noOfCopies);
+                     printf("Authors:");
+                     puts(book[index].author);
+                }
+         }
+  
+   }
+   
+   void issueBook()
+       {
+            int id;
+             
+            printf("\nEnter the ID of the book to issue:");
+            scanf("%d",&id);
+         
+            for(int index=0;index<totalRecords;index++)
+             {
+                if(book[index].bookID==id)
+                 {
+                     book[index].noOfCopies=book[index].noOfCopies - 1;
+                  
+                     printf("\nOne book is returned with ID:%d",id);
+       
+
+                   return;
+                  }
+             }
+       
+        }
+   
+    void returnBook()
+     
+      {
+     
+         int id;
+         printf("\nEnter the ID of the book to return:");
+         scanf("%d",&id);
+
+         for(int index=0;index<totalRecords;index++)
+           {
+                if(book[index].bookID==id)
+          
+                    {
+                         book[index].noOfCopies=book[index].noOfCopies + 1;
+                         printf("\nOne book is returned with ID: %d",id);
+
+                          return;
+                    }
+           }
+
+
+        }
+
+
+     int main()
+  {
+     printf("\nHow many books in total?");
+     scanf("%d",&totalRecords);
+     getchar();
+
+     input();
+    
+     int option;
+
+     while(1)
+  {
+      printf("\n 1:Display all book details");
+      printf("\n 2:Display particular book details");
+      printf("\n 3:Issue a book");
+      printf("\n 4:Return a book");
+      printf("\n 5:Quit the application");
+      printf("\n Please enter your choice:");
+      scanf("%d",&option);
+       {
+         case 1:
+                  displayAll();
+                  break;
+       
+         case 2: 
+                  displayOne();
+                  break;
+
+         case 3: 
+                  issueBook();
+                  break;
+
+         case 4:
+                  returnBook();
+                  break;
+
+         case 5:
+                  return 0;
+         default:
+                  printf("\nInvalid choice!");
+
+           }
+    
+      }
+   
+      return 0;
+
+  }
+             
+             
